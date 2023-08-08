@@ -1,11 +1,11 @@
 import React from 'react';
-import { nunito, oxanium } from '@/app/fonts';
+import { nunito, oxanium } from '@/app/(site)/fonts';
 import Logo from './Logo';
 
 const Header = () => {
 	return (
 		<header
-			className={`${nunito.className} flex bg-stone-900 p-4 justify-between items-center`}
+			className={`${nunito.className} flex bg-stone-900 p-4 justify-between items-center h-[20vh]`}
 		>
 			<Logo />
 			<div>

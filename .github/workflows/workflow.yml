@@ -1,0 +1,11 @@
+name: Deployment Workflow for main branch
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deployment-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        run: echo 'Deploying...'

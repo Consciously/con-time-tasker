@@ -1,9 +1,9 @@
-import './globals.css';
+import '../globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import { nunito } from './fonts';
-import Header from './_components/ui/header/Header';
-import Sidebar from './_components/ui/sidebar/Sidebar';
+import Header from '../_components/ui/header/Header';
+import Sidebar from '../_components/ui/sidebar/Sidebar';
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -19,9 +19,9 @@ export default function RootLayout({
 		<ClerkProvider>
 			<html lang='en'>
 				<body className={nunito.className}>
-					<div className='h-screen flex'>
+					<div className='flex'>
 						<Sidebar />
-						<div className='w-11/12 h-full bg-stone-300'>
+						<div className='w-11/12'>
 							<Header />
 							<main>{children}</main>
 						</div>

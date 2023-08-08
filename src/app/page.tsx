@@ -1,3 +1,5 @@
+import Redirection from './_components/Redirection';
+
 export default function Home() {
-	return <div>Hello World!</div>;
+	return <Redirection />;
 }

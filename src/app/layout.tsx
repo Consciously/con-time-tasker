@@ -1,6 +1,8 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { nunito } from './fonts';
+import Header from './_components/ui/header/Header';
+import Sidebar from './_components/ui/sidebar/Sidebar';
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -14,7 +16,15 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<body className={nunito.className}>{children}</body>
+			<body className={nunito.className}>
+				<div className='h-screen flex'>
+					<Sidebar />
+					<div className='w-11/12 h-full bg-stone-300'>
+						<Header />
+						<main>{children}</main>
+					</div>
+				</div>
+			</body>
 		</html>
 	);
 }

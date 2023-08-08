@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-	--foreground-rgb: 0, 0, 0;
-	--background-start-rgb: 214, 219, 220;
-	--background-end-rgb: 255, 255, 255;
+	--color-orange-600: #dd6b20;
+	--color-orange-400: #fb923c;
+	--color-orange-300: #fdba74;
 }

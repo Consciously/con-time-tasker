@@ -15,8 +15,22 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
+	const appearanceObj = {
+		elements: {
+			card: 'bg-stone-900 p-8',
+			headerTitle:
+				'text-transparent text-4xl bg-orange-gradient-right bg-clip-text font-semibold',
+			headerSubtitle: 'hidden',
+			formFieldLabel: 'text-stone-300 font-semibold',
+			formFieldInput: 'text-stone 900 font-semibold',
+			formButtonPrimary: 'bg-orange-600 text-stone-900 font-semibold',
+			footerActionText: 'text-stone-300 font-semibold',
+			footerActionLink: 'text-orange-600 font-semibold',
+		},
+	};
+
 	return (
-		<ClerkProvider>
+		<ClerkProvider appearance={appearanceObj}>
 			<html lang='en'>
 				<body className={nunito.className}>
 					<div className='flex'>

@@ -21,9 +21,10 @@ jobs:
       - name: Get merged branch name
         id: get-branch
         run: |
-          BRANCH_NAME=$(git log --merges -n 1 --pretty=%B | tail -1 | cut -d ' ' -f2)
+          CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+          MERGE_MESSAGE=$(git log ${{ github.sha }} -n 1 --merges --pretty="%s")
+          BRANCH_NAME=$(echo $MERGE_MESSAGE | sed -n "s/Merge branch '\(.*\)' into $CURRENT_BRANCH/\1/p")
           echo "Merged branch: $BRANCH_NAME"
-          echo "branch=$BRANCH_NAME" >> $GITHUB_ENV
           echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
 
       - name: Close PR and delete branch

@@ -1,15 +1,15 @@
 import React from 'react';
 import MenuIcon from './MenuIcon';
-import { SignOutButton } from '@clerk/nextjs';
+import SignOut from './SignOut';
 
 const Navigation = () => {
 	return (
-		<nav className='my-4'>
-			<MenuIcon />
-			<div>
-				<SignOutButton />
+		<nav className='flex flex-col justify-center items-center h-full'>
+			<div className='h-[20vh] py-4'>
+				<MenuIcon />
+				<SignOut />
 			</div>
-			<div></div>
+			<div className='mx-auto h-[80vh]'>hello</div>
 		</nav>
 	);
 };

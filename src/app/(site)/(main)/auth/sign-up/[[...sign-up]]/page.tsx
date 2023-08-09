@@ -2,7 +2,11 @@ import React from 'react';
 import { SignUp } from '@clerk/nextjs';
 
 const SignUpPage = () => {
-	return <SignUp />;
+	return (
+		<div className='flex justify-center items-center h-full'>
+			<SignUp />;
+		</div>
+	);
 };
 
 export default SignUpPage;

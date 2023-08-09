@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { nunito } from './fonts';
 import Header from '../_components/ui/header/Header';
 import Sidebar from '../_components/ui/sidebar/Sidebar';
+import { oxanium } from '@/app/(site)/fonts';
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -18,14 +19,20 @@ export default function RootLayout({
 	const appearanceObj = {
 		elements: {
 			card: 'bg-stone-900 p-8',
-			headerTitle:
-				'text-transparent text-4xl bg-orange-gradient-right bg-clip-text font-semibold',
+			headerTitle: `${oxanium.className} text-transparent text-4xl bg-orange-gradient-right bg-clip-text font-semibold`,
 			headerSubtitle: 'hidden',
+			formHeaderTitle: 'text-2xl text-orange-600 font-semibold',
+			formHeaderSubtitle: 'text-base text-stone-300',
+			identityPreviewText: 'text-base text-stone-300',
+			identityPreviewEditButton: 'text-orange-600',
+			otpCodeFieldInput:
+				'text-stone-300 border-stone-300 focus:border-orange-600',
+			formResendCodeLink: 'text-orange-600 font-semibold',
 			formFieldLabel: 'text-stone-300 font-semibold',
 			formFieldInput: 'text-stone 900 font-semibold',
-			formButtonPrimary: 'bg-orange-600 text-stone-900 font-semibold',
-			footerActionText: 'text-stone-300 font-semibold',
-			footerActionLink: 'text-orange-600 font-semibold',
+			formButtonPrimary: 'text-base bg-orange-600 text-stone-900 font-semibold',
+			footerActionText: 'text-base text-stone-300 font-semibold',
+			footerActionLink: 'text-base text-orange-600 font-semibold',
 		},
 	};
 

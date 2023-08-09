@@ -23,7 +23,8 @@ jobs:
         run: |
           BRANCH_NAME=$(git log --merges -n 1 --pretty=%B | tail -1 | cut -d ' ' -f2)
           echo "Merged branch: $BRANCH_NAME"
-          echo "::set-output name=branch::$BRANCH_NAME"
+          echo "branch=$BRANCH_NAME" >> $GITHUB_ENV
+          echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
 
       - name: Close PR and delete branch
         if: startsWith(steps.get-branch.outputs.branch, 'feature/')

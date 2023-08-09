@@ -28,18 +28,18 @@ jobs:
           # Find the PR associated with the branch
           PR_NUMBER=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
                           -H "Accept: application/vnd.github.v3+json" \
-                          https://api.github.com/repos/${{ github.repository }}/pulls?state=open \
+                          https://api.github.com/repos/Consciously/con-time-tasker/pulls?state=open \
                           | jq '.[] | select(.head.ref == "${{ steps.get-branch.outputs.branch }}").number')
 
           # Close the PR
           if [ ! -z "$PR_NUMBER" ]; then
             curl -s -X PATCH -H "Authorization: token $GITHUB_TOKEN" \
                           -H "Accept: application/vnd.github.v3+json" \
-                          https://api.github.com/repos/${{ github.repository }}/pulls/$PR_NUMBER \
+                          https://api.github.com/repos/Consciously/con-time-tasker/pulls/$PR_NUMBER \
                           -d '{"state": "closed"}'
           fi
 
           # Delete the branch
           curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
                           -H "Accept: application/vnd.github.v3+json" \
-                          https://api.github.com/repos/${{ github.repository }}/git/refs/heads/${{ steps.get-branch.outputs.branch }}
+                          https://api.github.com/repos/Consciously/con-time-tasker/git/refs/heads/${{ steps.get-branch.outputs.branch }}

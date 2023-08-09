@@ -10,21 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Handle feature branch deletion
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Check if the feature branch still exists on the remote
-          EXISTS=$(git ls-remote --heads origin | grep ${{ github.ref }})
-
-          # If the branch exists on the remote, exit
-          if [[ -n "$EXISTS" ]]; then
-            echo "Branch ${{ github.ref }} still exists on the remote. Exiting."
-            exit 0
-          fi
-
           PR_NUMBER=$(gh pr list --base ${{ github.ref }} --json number --jq '.[0].number')
 
           # If PR doesn't exist for the branch, exit
@@ -42,3 +33,6 @@ jobs:
 
           # Close the PR
           gh pr close $PR_NUMBER
+
+          # Delete the remote branch
+          git push origin --delete ${{ github.ref }}

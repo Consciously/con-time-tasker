@@ -14,10 +14,9 @@ jobs:
 
       - name: Install GitHub CLI
         run: |
-          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-          sudo apt-add-repository -y https://cli.github.com/packages
-          sudo apt update
-          sudo apt install -y gh
+          curl -sSL https://github.com/cli/cli/releases/download/v2.32.1/gh_2.32.1_linux_amd64.deb -o gh.deb
+          sudo apt install ./gh.deb
+          rm gh.deb
 
       - name: Get merged branch name
         id: get-branch

@@ -12,21 +12,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install GitHub CLI
-        run: |
-          curl -sSL https://github.com/cli/cli/releases/download/v2.32.1/gh_2.32.1_linux_amd64.deb -o gh.deb
-          sudo apt install ./gh.deb
-          rm gh.deb
-
       - name: Get merged branch name
         id: get-branch
         run: |
           CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
           MERGE_MESSAGE=$(git log ${{ github.sha }} -n 1 --merges --pretty="%s")
           BRANCH_NAME=$(echo $MERGE_MESSAGE | sed -n "s/Merge branch '\(.*\)' into $CURRENT_BRANCH/\1/p")
-          echo "Current Branch: $CURRENT_BRANCH"
-          echo "Merge Message: $MERGE_MESSAGE"
-          echo "Merged branch: $BRANCH_NAME"
           echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
 
       - name: Close PR and delete branch
@@ -34,4 +25,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr close ${{ steps.get-branch.outputs.branch }} --delete-branch
+          # Find the PR associated with the branch
+          PR_NUMBER=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+                          -H "Accept: application/vnd.github.v3+json" \
+                          https://api.github.com/repos/${{ github.repository }}/pulls?state=open \
+                          | jq '.[] | select(.head.ref == "${{ steps.get-branch.outputs.branch }}").number')
+
+          # Close the PR
+          if [ ! -z "$PR_NUMBER" ]; then
+            curl -s -X PATCH -H "Authorization: token $GITHUB_TOKEN" \
+                          -H "Accept: application/vnd.github.v3+json" \
+                          https://api.github.com/repos/${{ github.repository }}/pulls/$PR_NUMBER \
+                          -d '{"state": "closed"}'
+          fi
+
+          # Delete the branch
+          curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
+                          -H "Accept: application/vnd.github.v3+json" \
+                          https://api.github.com/repos/${{ github.repository }}/git/refs/heads/${{ steps.get-branch.outputs.branch }}

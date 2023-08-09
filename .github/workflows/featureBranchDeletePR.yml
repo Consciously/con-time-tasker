@@ -1,38 +1,34 @@
-name: Behavior when feature branch is deleted
+name: Behavior when branch is deleted
 
 on:
   push:
-    branches-ignore:
-      - 'feature/**'
+    branches:
+      - dev
 
 jobs:
-  handleBranchDeletion:
+  handleFeatureBranch:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: Handle feature branch deletion
+      - name: Install GitHub CLI
+        run: |
+          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+          sudo apt-add-repository https://cli.github.com/packages
+          sudo apt update
+          sudo apt install gh
+
+      - name: Get merged branch name
+        id: get-branch
+        run: |
+          BRANCH_NAME=$(git log --merges -n 1 --pretty=%B | tail -1 | cut -d ' ' -f2)
+          echo "Merged branch: $BRANCH_NAME"
+          echo "::set-output name=branch::$BRANCH_NAME"
+
+      - name: Close PR and delete branch
+        if: startsWith(steps.get-branch.outputs.branch, 'feature/')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          PR_NUMBER=$(gh pr list --base ${{ github.ref }} --json number --jq '.[0].number')
-
-          # If PR doesn't exist for the branch, exit
-          if [[ -z "$PR_NUMBER" ]]; then
-            echo "No PR found for branch ${{ github.ref }}. Exiting."
-            exit 0
-          fi
-
-          # Fetch commits of the branch
-          COMMITS=$(gh pr view $PR_NUMBER --json commits --jq '.commits.nodes[] | .commit.message')
-
-          # Update PR description
-          PR_BODY="${{ github.ref }} has the following commits:\n\n$COMMITS"
-          gh pr edit $PR_NUMBER --body "$PR_BODY"
-
-          # Close the PR
-          gh pr close $PR_NUMBER
-
-          # Delete the remote branch
-          git push origin --delete ${{ github.ref }}
+          gh pr close ${{ steps.get-branch.outputs.branch }} --delete-branch

@@ -2,14 +2,11 @@ name: Behavior when feature branch is deleted
 
 on:
   push:
-    branches:
+    branches-ignore:
       - 'feature/**'
-    paths-ignore:
-      - '**' # This will make the job run only when a branch is deleted
 
 jobs:
   handleBranchDeletion:
-    if: github.event.deleted == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -19,18 +16,29 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          BRANCH_NAME="${{ github.ref }}"
-          PR_NUMBER=$(gh pr list --base $BRANCH_NAME --json number --jq '.[0].number')
+          # Check if the feature branch still exists on the remote
+          EXISTS=$(git ls-remote --heads origin | grep ${{ github.ref }})
+
+          # If the branch exists on the remote, exit
+          if [[ -n "$EXISTS" ]]; then
+            echo "Branch ${{ github.ref }} still exists on the remote. Exiting."
+            exit 0
+          fi
+
+          PR_NUMBER=$(gh pr list --base ${{ github.ref }} --json number --jq '.[0].number')
+
+          # If PR doesn't exist for the branch, exit
+          if [[ -z "$PR_NUMBER" ]]; then
+            echo "No PR found for branch ${{ github.ref }}. Exiting."
+            exit 0
+          fi
 
           # Fetch commits of the branch
           COMMITS=$(gh pr view $PR_NUMBER --json commits --jq '.commits.nodes[] | .commit.message')
 
           # Update PR description
-          PR_BODY="$BRANCH_NAME has the following commits:\n\n$COMMITS"
+          PR_BODY="${{ github.ref }} has the following commits:\n\n$COMMITS"
           gh pr edit $PR_NUMBER --body "$PR_BODY"
 
           # Close the PR
           gh pr close $PR_NUMBER
-
-          # Delete the remote branch
-          git push origin --delete $BRANCH_NAME

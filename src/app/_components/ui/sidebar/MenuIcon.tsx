@@ -17,7 +17,7 @@ const MenuIcon = () => {
 			<div className='flex flex-col justify-center items-center h-full w-full'>
 				<div
 					className={`w-8 h-1 bg-orange-600 transform transition-transform duration-300 ease-in-out ${
-						isOpen ? 'origin-center translate-y-1 rotate-45' : 'mb-1'
+						isOpen ? 'origin-center translate-y-1 rotate-45' : 'mb-2'
 					}`}
 				></div>
 				<div
@@ -27,7 +27,7 @@ const MenuIcon = () => {
 				></div>
 				<div
 					className={`w-8 h-1 bg-orange-600 transform transition-transform duration-300 ease-in-out ${
-						isOpen ? 'origin-center -translate-y-1 -rotate-45' : 'mt-1'
+						isOpen ? 'origin-center -translate-y-1 -rotate-45' : 'mt-2'
 					}`}
 				></div>
 			</div>

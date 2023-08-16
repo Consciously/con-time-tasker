@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { nunito } from './fonts';
 import Header from '../_components/ui/header/Header';
 import Sidebar from '../_components/ui/sidebar/Sidebar';
+import { SidebarProvider } from '../_context/SidebarContext';
 import { oxanium } from '@/app/(site)/fonts';
 
 export const metadata: Metadata = {
@@ -38,17 +39,19 @@ export default function RootLayout({
 
 	return (
 		<ClerkProvider appearance={appearanceObj}>
-			<html lang='en'>
-				<body className={nunito.className}>
-					<div className='flex'>
-						<Sidebar />
-						<div className='w-11/12'>
-							<Header />
-							<main>{children}</main>
+			<SidebarProvider>
+				<html lang='en'>
+					<body className={nunito.className}>
+						<div className='flex'>
+							<Sidebar />
+							<div className='w-11/12'>
+								<Header />
+								<main>{children}</main>
+							</div>
 						</div>
-					</div>
-				</body>
-			</html>
+					</body>
+				</html>
+			</SidebarProvider>
 		</ClerkProvider>
 	);
 }

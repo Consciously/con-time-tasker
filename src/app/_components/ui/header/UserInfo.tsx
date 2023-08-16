@@ -1,11 +1,13 @@
+'use client';
+
 import React from 'react';
 import { oxanium } from '@/app/(site)/fonts';
-import { currentUser } from '@clerk/nextjs';
 import { LuClipboardList, LuFlag, LuClipboardCheck, LuX } from 'react-icons/lu';
 import { IoCheckmark } from 'react-icons/io5';
+import { useSidebar } from '@/app/_context/SidebarContext';
 
-const UserInfo = async () => {
-	const user = await currentUser();
+const UserInfo = () => {
+	const { user } = useSidebar();
 
 	return (
 		<div className='flex flex-col justify-items-center items-center bg-orange-gradient-right rounded-md p-1 max-w-sm'>

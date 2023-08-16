@@ -1,16 +1,7 @@
-import React from 'react';
-import Navigation from './Navigation';
-import MenuContainer from './MenuContainer';
-import UserContainer from './UserContainer';
+import SidebarContent from './SidebarContent';
 
 const Sidebar = () => {
-	return (
-		<div className='w-1/12 bg-stone-700'>
-			<MenuContainer />
-			<UserContainer />
-			<Navigation />
-		</div>
-	);
+	return <SidebarContent />;
 };
 
 export default Sidebar;

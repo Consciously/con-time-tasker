@@ -1,9 +1,12 @@
-import React from 'react';
-import { SignOutButton, currentUser } from '@clerk/nextjs';
-import { FaSignOutAlt } from 'react-icons/fa';
+'use client';
 
-const SignOut = async () => {
-	const user = await currentUser();
+import React from 'react';
+import { SignOutButton } from '@clerk/nextjs';
+import { FaSignOutAlt } from 'react-icons/fa';
+import { useSidebar } from '@/app/_context/SidebarContext';
+
+const SignOut = () => {
+	const { user } = useSidebar();
 
 	return (
 		<div className='w-14 h-14 mx-auto text-center'>

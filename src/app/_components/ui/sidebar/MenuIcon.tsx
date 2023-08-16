@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useSidebar } from '@/app/_context/SidebarContext';
 
 const MenuIcon = () => {
-	const [isOpen, setIsOpen] = useState(false);
+	const { isOpen, toggleOpen } = useSidebar();
 
 	const handleMenuIcon = () => {
-		setIsOpen(prevState => !prevState);
+		toggleOpen();
 	};
 
 	return (

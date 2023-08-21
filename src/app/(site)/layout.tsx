@@ -42,7 +42,7 @@ export default function RootLayout({
 			<SidebarProvider>
 				<html lang='en'>
 					<body className={nunito.className}>
-						<div className='flex'>
+						<div className='flex h-screen w-screen'>
 							<Sidebar />
 							<div className='w-11/12'>
 								<Header />

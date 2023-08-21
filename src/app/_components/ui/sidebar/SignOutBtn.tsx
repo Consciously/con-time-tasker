@@ -5,7 +5,7 @@ import { SignOutButton } from '@clerk/nextjs';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { useSidebar } from '@/app/_context/SidebarContext';
 
-const SignOut = () => {
+const SignOutBtn = () => {
 	const { user } = useSidebar();
 
 	return (
@@ -21,4 +21,4 @@ const SignOut = () => {
 	);
 };
 
-export default SignOut;
+export default SignOutBtn;

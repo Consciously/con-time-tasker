@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { currentUser } from '@clerk/nextjs';
+import { fetchUserData } from '@/app/_util/getCurrentUser';
 
 type User = ReturnType<typeof currentUser> extends Promise<infer U> ? U : never;
 
@@ -21,20 +22,16 @@ const SidebarProvider = ({ children }: IProps) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [user, setUser] = useState<User | null>(null);
 
-	const toggleOpen = () => setIsOpen(prevState => !prevState);
-
 	useEffect(() => {
-		const fetchUser = async () => {
-			try {
-				const userData = await currentUser();
-				setUser(userData);
-			} catch (error) {
-				console.error('Failed to fetch user:', error);
-			}
+		const fetchData = async () => {
+			const user = await fetchUserData();
+			setUser(user.data);
 		};
 
-		fetchUser();
+		fetchData();
 	}, []);
+
+	const toggleOpen = () => setIsOpen(prevState => !prevState);
 
 	return (
 		<SidebarContext.Provider value={{ isOpen, toggleOpen, user }}>

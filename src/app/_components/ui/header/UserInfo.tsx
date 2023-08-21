@@ -15,7 +15,7 @@ const UserInfo = () => {
 				<h3
 					className={`${oxanium.className} text-4xl text-stone-300 text-center font-semibold mb-2`}
 				>
-					Hey {!user?.id ? <span>Dude!</span> : <span>{user?.firstName}</span>}
+					Hey {!user?.id ? <span>Dude!</span> : <span>{user.firstName}</span>}
 				</h3>
 				<p
 					className={`${oxanium.className} text-base text-stone-300 font-semibold text-center mt-2`}

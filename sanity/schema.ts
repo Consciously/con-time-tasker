@@ -3,7 +3,8 @@ import projectSchema from './projectSchema';
 import tagSchema from './tagSchema';
 import userSchema from './userSchema';
 import taskSchema from './taskSchema';
+import goalSchema from './goalSchema';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-	types: [userSchema, projectSchema, taskSchema, tagSchema],
+	types: [userSchema, projectSchema, goalSchema, taskSchema, tagSchema],
 };

@@ -5,8 +5,8 @@ const goalSchema = {
 	fields: [
 		{ name: 'title', type: 'string' },
 		{ name: 'description', type: 'text' },
-		{ name: 'startDate', type: 'datetime' },
-		{ name: 'endDate', type: 'datetime' },
+		{ name: 'startDate', type: 'date' },
+		{ name: 'endDate', type: 'date' },
 		{
 			name: 'priority',
 			type: 'string',

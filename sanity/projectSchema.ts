@@ -15,7 +15,7 @@ const projectSchema = {
 		{
 			name: 'category',
 			type: 'string',
-			options: { list: ['business/customer', 'business/own', 'private'] },
+			options: { list: ['customer', 'own', 'private'] },
 		},
 		{
 			name: 'assignedTo',

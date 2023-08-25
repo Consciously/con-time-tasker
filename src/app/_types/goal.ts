@@ -1,7 +1,7 @@
 import { Category, Priority } from './enums';
-import { IGoal } from '.';
+import { ITask } from '.';
 
-export interface IProject {
+export interface IGoal {
 	_id: string;
 	title: string;
 	description: string;
@@ -9,5 +9,6 @@ export interface IProject {
 	endDate: Date;
 	category: Category;
 	priority: Priority;
-	goals: IGoal[];
+	tags: string[];
+	tasks: ITask[];
 }

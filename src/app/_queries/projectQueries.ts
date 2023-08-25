@@ -12,7 +12,10 @@ export const getAllProjects = async (): Promise<IProject[]> => {
       startDate,
       endDate,
       category,
-      priority
+      priority,
+      "goals": goals[]{
+        goals->
+      }
     }`,
 	);
 };
@@ -30,7 +33,19 @@ export const getProjectsByMonth = async (
       startDate,
       endDate,
       category,
-      priority
+      priority,
+      status,
+      goals->{
+        _id,
+        title,
+        description,
+        startDate,
+        endDate,
+        category,
+        priority,
+        tags,
+        tasks
+      }
     }`,
 		{ monthStart, monthEnd },
 	);

@@ -1,27 +1,29 @@
-const goalSchema = {
+import { defineType, defineField, defineArrayMember } from 'sanity';
+
+const goalSchema = defineType({
 	name: 'goal',
 	title: 'Goal',
 	type: 'document',
 	fields: [
-		{ name: 'title', type: 'string' },
-		{ name: 'description', type: 'text' },
-		{ name: 'startDate', type: 'date' },
-		{ name: 'endDate', type: 'date' },
-		{
+		defineField({ name: 'title', type: 'string' }),
+		defineField({ name: 'description', type: 'text' }),
+		defineField({ name: 'startDate', type: 'date' }),
+		defineField({ name: 'endDate', type: 'date' }),
+		defineField({
 			name: 'priority',
 			type: 'string',
 			options: { list: ['low', 'medium', 'high'] },
-		},
-		{ name: 'tags', type: 'array', of: [{ type: 'string' }] },
-		{
+		}),
+		defineField({ name: 'tags', type: 'array', of: [{ type: 'string' }] }),
+		defineField({
 			name: 'tasks',
 			type: 'array',
-			of: [{ type: 'reference', to: { type: 'task' } }],
-		},
+			of: [defineArrayMember({ type: 'reference', to: { type: 'task' } })],
+		}),
 	],
 	preview: {
 		select: { title: 'title', subtitle: 'description' },
 	},
-};
+});
 
 export default goalSchema;

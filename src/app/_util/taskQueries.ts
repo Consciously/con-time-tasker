@@ -12,8 +12,7 @@ export const getAllProjects = async (): Promise<IProject[]> => {
       startDate,
       endDate,
       category,
-      priority,
-      status
+      priority
     }`,
 	);
 };
@@ -31,8 +30,7 @@ export const getProjectsByMonth = async (
       startDate,
       endDate,
       category,
-      priority,
-      status
+      priority
     }`,
 		{ monthStart, monthEnd },
 	);
@@ -50,9 +48,44 @@ export const getProjectsByCategory = async (
       startDate,
       endDate,
       category,
-      priority,
-      status
+      priority
     }`,
 		{ category },
+	);
+};
+
+// get projects by priority
+export const getProjectsByPriority = async (
+	priority: string,
+): Promise<IProject[]> => {
+	return client.fetch(
+		groq`*[_type == "project" && priority == $priority]{
+      _id,
+      title,
+      description,
+      startDate,
+      endDate,
+      category,
+      priority
+    }`,
+		{ priority },
+	);
+};
+
+// get projects by id
+export const getProjectById = async (
+	projectId: string,
+): Promise<IProject | null> => {
+	return client.fetch(
+		groq`*[_type == "project" && _id == $projectId]{
+      _id,
+      title,
+      description,
+      startDate,
+      endDate,
+      category,
+      priority,
+    }[0]`, // Retrieve the first (and only) match
+		{ projectId },
 	);
 };

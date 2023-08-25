@@ -13,9 +13,7 @@ export const getAllProjects = async (): Promise<IProject[]> => {
       endDate,
       category,
       priority,
-      "goals": goals[]{
-        goals->
-      }
+      "assigned to": assignedTo->,
     }`,
 	);
 };
@@ -100,6 +98,24 @@ export const getProjectById = async (
       endDate,
       category,
       priority,
+      "assignedTo": assignedTo->,
+      "goals": goal[]->{
+        _id,
+        title,
+        description,
+        startDate,
+        endDate,
+        priority,
+        tags,
+        "tasks": task[]->{
+          _id,
+          title,
+          description,
+          status,
+          priority,
+          duetime
+        }
+      }
     }[0]`, // Retrieve the first (and only) match
 		{ projectId },
 	);

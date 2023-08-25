@@ -22,7 +22,7 @@ const goalSchema = defineType({
 			of: [{ type: 'string' }],
 		}),
 		defineField({
-			name: 'tasks',
+			name: 'task',
 			title: 'Tasks',
 			type: 'array',
 			of: [defineArrayMember({ type: 'reference', to: { type: 'task' } })],

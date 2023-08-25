@@ -26,8 +26,8 @@ const projectSchema = defineType({
 			to: { type: 'user' },
 		}),
 		defineField({
-			name: 'goals',
-			title: 'Title',
+			name: 'goal',
+			title: 'Goals',
 			type: 'array',
 			of: [defineArrayMember({ type: 'reference', to: { type: 'goal' } })],
 		}),

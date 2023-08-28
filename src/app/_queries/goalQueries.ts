@@ -12,14 +12,15 @@ export const getAllGoals = async (): Promise<IGoal[]> => {
       description,
       startDate,
       endDate,
-      category,
       priority,
-      tags,
+      tags[]->{
+        _id,
+        title
+      },
       "project": *[_type == 'project' && references(^._id)]{
         _id,
         title
       },
-      
     }`,
 	);
 };

@@ -11,7 +11,7 @@ export const getAllTasks = async (): Promise<ITask[]> => {
       description,
       status,
       priority,
-      duetime,
+      duedate,
       "goal": *[_type == "goal" && references(^._id)]{
         _id,
         title
@@ -30,7 +30,7 @@ export const getTasksByStatus = async (status: string): Promise<ITask[]> => {
       description,
       status,
       priority,
-      duetime,
+      duedate,
       "goal": *[_type == "goal" && references(^._id)]{
         _id,
         title
@@ -51,7 +51,7 @@ export const getTasksByPriority = async (
       description,
       status,
       priority,
-      duetime,
+      duedate,
       "goal": *[_type == "goal" && references(^._id)]{
         _id,
         title

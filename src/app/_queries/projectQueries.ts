@@ -19,7 +19,7 @@ export const getAllProjects = async (): Promise<IProject[]> => {
 };
 
 // Get projects by month
-export const getProjectsByMonth = async (
+export const getProjectsByTimeRange = async (
 	monthStart: Date,
 	monthEnd: Date,
 ): Promise<IProject[]> => {
@@ -33,17 +33,7 @@ export const getProjectsByMonth = async (
       category,
       priority,
       status,
-      goals->{
-        _id,
-        title,
-        description,
-        startDate,
-        endDate,
-        category,
-        priority,
-        tags,
-        tasks
-      }
+      "assigned to": assignedTo->,
     }`,
 		{ monthStart, monthEnd },
 	);
@@ -61,7 +51,8 @@ export const getProjectsByCategory = async (
       startDate,
       endDate,
       category,
-      priority
+      priority,
+      "assigned to": assignedTo->,
     }`,
 		{ category },
 	);
@@ -79,7 +70,8 @@ export const getProjectsByPriority = async (
       startDate,
       endDate,
       category,
-      priority
+      priority,
+      "assigned to": assignedTo->,
     }`,
 		{ priority },
 	);
@@ -116,7 +108,7 @@ export const getProjectById = async (
           duetime
         }
       }
-    }[0]`, // Retrieve the first (and only) match
+    }[0]`,
 		{ projectId },
 	);
 };

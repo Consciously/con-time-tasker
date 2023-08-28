@@ -20,8 +20,8 @@ export const getAllProjects = async (): Promise<IProject[]> => {
 
 // Get projects by month
 export const getProjectsByTimeRange = async (
-	monthStart: Date,
-	monthEnd: Date,
+	startDate: Date,
+	endDate: Date,
 ): Promise<IProject[]> => {
 	return client.fetch(
 		groq`*[_type == "project" && startDate >= $monthStart && endDate <= $monthEnd]{
@@ -35,7 +35,7 @@ export const getProjectsByTimeRange = async (
       status,
       "assigned to": assignedTo->,
     }`,
-		{ monthStart, monthEnd },
+		{ startDate, endDate },
 	);
 };
 

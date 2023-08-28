@@ -10,8 +10,8 @@ const Sidebar = () => {
 
 	return (
 		<div
-			className={`w-1/12 ${
-				isOpen ? 'w-1/6' : ''
+			className={`w-[5vw] ${
+				isOpen ? 'w-[20vw]' : ''
 			} bg-stone-700 transition duration-300`}
 		>
 			<MenuContainer />

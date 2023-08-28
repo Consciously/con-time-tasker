@@ -44,7 +44,7 @@ export default function RootLayout({
 					<body className={nunito.className}>
 						<div className='flex h-screen w-screen'>
 							<Sidebar />
-							<div className='w-11/12'>
+							<div className='w-[95vw]'>
 								<Header />
 								<main>{children}</main>
 							</div>

@@ -19,7 +19,7 @@ const goalSchema = defineType({
 			name: 'tags',
 			title: 'Tags',
 			type: 'array',
-			of: [{ type: 'string' }],
+			of: [defineArrayMember({ type: 'reference', to: { type: 'tag' } })],
 		}),
 		defineField({
 			name: 'task',

@@ -28,11 +28,11 @@ const taskSchema = defineType({
 			title: 'Priority',
 			type: 'string',
 			options: {
-				list: ['low', 'medium', 'high'],
+				list: ['Low', 'Medium', 'High'],
 			},
 		}),
 		defineField({
-			name: 'duetime',
+			name: 'duedate',
 			title: 'Due Date',
 			type: 'date',
 			options: {

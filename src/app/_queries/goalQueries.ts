@@ -42,6 +42,7 @@ export const getGoalsByTimeRange = async (
       "project": *[_type == 'project' && references(^._id)]{
         _id,
         title
+      }
     }`,
 		{ startDate, endDate },
 	);

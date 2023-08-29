@@ -13,7 +13,7 @@ const MainLayout = ({ children }: IProps) => {
 				<ContentInfoContainer />
 				<ContentSidebarContainer />
 			</div>
-			<div className='col-span-5 bg-stone-900 rounded-md'>Main Table</div>
+			<div className='col-span-5 bg-stone-900 rounded-md'>{children}</div>
 		</div>
 	);
 };

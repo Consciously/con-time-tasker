@@ -10,7 +10,7 @@ const SignOutBtn = () => {
 
 	return (
 		<div className='w-14 h-14 mx-auto text-center'>
-			{user?.id && (
+			{user && user.id && (
 				<SignOutButton>
 					<button className='p-4 text-center text-xl rounded-full shadow-lg text-orange-600 border-2 border-orange-600'>
 						<FaSignOutAlt />

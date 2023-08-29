@@ -9,7 +9,7 @@ type User = ReturnType<typeof currentUser> extends Promise<infer U> ? U : never;
 interface ISidebarContext {
 	isOpen: boolean;
 	toggleOpen: () => void;
-	user: User | null;
+	user: User;
 }
 
 interface IProps {
@@ -20,12 +20,13 @@ const SidebarContext = createContext<ISidebarContext | undefined>(undefined);
 
 const SidebarProvider = ({ children }: IProps) => {
 	const [isOpen, setIsOpen] = useState(false);
-	const [user, setUser] = useState<User | null>(null);
+	const [user, setUser] = useState<User>(null);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			const user = await fetchUserData();
-			setUser(user.data);
+
+			setUser(user);
 		};
 
 		fetchData();

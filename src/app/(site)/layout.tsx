@@ -5,7 +5,6 @@ import { nunito, oxanium } from './fonts';
 import Header from '../_components/ui/header/Header';
 import SidebarContainer from '../_components/ui/sidebar/SidebarContainer';
 import { SidebarProvider } from '../_context/SidebarContext';
-import { fetchUserData } from '../_util/getCurrentUser';
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -59,5 +58,3 @@ export default function RootLayout({
 		</html>
 	);
 }
-
-// export default RootLayout;

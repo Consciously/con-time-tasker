@@ -13,9 +13,9 @@ const HomePage = async () => {
 	};
 
 	return (
-		<div>
+		<>
 			<Redirection user={plainUser} />
-		</div>
+		</>
 	);
 };
 

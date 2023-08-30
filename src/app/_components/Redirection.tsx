@@ -11,16 +11,16 @@ const Redirection = ({ user }: IProps) => {
 	const pathname = usePathname();
 
 	useEffect(() => {
-		if (!user && pathname === '/') {
-			redirect('/auth/sign-in');
-		} else if (user && user.id && pathname === '/') {
+		if (user.id && pathname === '/') {
 			redirect('/dashboard/monthly');
+		} /*  else if (!user.id && pathname === '/') {
+			redirect('/auth/sign-in');
 		} else {
 			return;
-		}
+		} */
 	}, [pathname, user]);
 
-	return null;
+	return <></>;
 };
 
 export default Redirection;

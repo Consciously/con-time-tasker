@@ -1,15 +1,8 @@
-import { authMiddleware, redirectToSignIn } from '@clerk/nextjs';
-import { NextResponse } from 'next/server';
+import { authMiddleware } from '@clerk/nextjs';
 
 export default authMiddleware({
-	afterAuth(auth, req) {
-		// handle users who aren't authenticated
-		if (!auth.userId && !auth.isPublicRoute) {
-			return redirectToSignIn({ returnBackUrl: req.url });
-		}
-	},
-
-	publicRoutes: ['/'],
+	// publicRoutes: ['/'],
+	// ignoredRoutes: ['/((?!api|trpc))(_next|.+..+)(.*)', '/a'],
 });
 
 export const config = {

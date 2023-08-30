@@ -1,11 +1,11 @@
 import '../globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
-import { nunito } from './fonts';
+import { nunito, oxanium } from './fonts';
 import Header from '../_components/ui/header/Header';
 import Sidebar from '../_components/ui/sidebar/Sidebar';
 import { SidebarProvider } from '../_context/SidebarContext';
-import { oxanium } from '@/app/(site)/fonts';
+import { fetchUserData } from '../_util/getCurrentUser';
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -17,6 +17,10 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
+	// const user = await fetchUserData();
+
+	// console.log('rootLayout', user);
+
 	const appearanceObj = {
 		elements: {
 			card: 'bg-stone-900 p-8',
@@ -55,3 +59,5 @@ export default function RootLayout({
 		</html>
 	);
 }
+
+// export default RootLayout;

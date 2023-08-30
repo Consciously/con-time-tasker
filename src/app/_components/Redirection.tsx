@@ -2,24 +2,26 @@
 
 import { useEffect } from 'react';
 import { usePathname, redirect } from 'next/navigation';
-import { useSidebar } from '../_context/SidebarContext';
+import type { User } from '@clerk/nextjs/api';
 
-const Redirection = () => {
-	const { user } = useSidebar();
+interface IProps {
+	user: { id: string | null };
+}
 
+const Redirection = ({ user }: IProps) => {
 	const pathname = usePathname();
 
 	useEffect(() => {
-		if (user && user.id) {
-			redirect('/dashboard/monthly');
-		} else if (!user) {
+		if (!user && pathname === '/') {
 			redirect('/auth/sign-in');
+		} else if (user && user.id && pathname === '/') {
+			redirect('/dashboard/monthly');
 		} else {
 			return;
 		}
 	}, [pathname, user]);
 
-	return null;
+	return <div>Hello World</div>;
 };
 
 export default Redirection;

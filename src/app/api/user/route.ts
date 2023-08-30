@@ -1,9 +1,8 @@
-import { currentUser } from '@clerk/nextjs';
+import { auth } from '@clerk/nextjs';
 import { NextResponse } from 'next/server';
 
 export const GET = async () => {
-	const user = await currentUser();
-
+	const { user } = auth();
 	if (!user) {
 		return new Response('Unauthorized', { status: 401 });
 	}

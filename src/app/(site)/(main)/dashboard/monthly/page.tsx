@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MonthlyPage = () => {
+const MonthlyPage = async () => {
 	return <div>MonthlyPage</div>;
 };
 

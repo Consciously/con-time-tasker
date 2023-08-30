@@ -8,6 +8,8 @@ export default authMiddleware({
 			return redirectToSignIn({ returnBackUrl: req.url });
 		}
 	},
+
+	publicRoutes: ['/'],
 });
 
 export const config = {

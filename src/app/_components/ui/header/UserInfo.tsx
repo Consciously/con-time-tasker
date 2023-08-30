@@ -1,13 +1,20 @@
-'use client';
-
 import React from 'react';
 import { oxanium } from '@/app/(site)/fonts';
 import { LuClipboardList, LuFlag, LuClipboardCheck, LuX } from 'react-icons/lu';
 import { IoCheckmark } from 'react-icons/io5';
-import { useSidebar } from '@/app/_context/SidebarContext';
+import { currentUser } from '@clerk/nextjs';
 
-const UserInfo = () => {
-	const { user } = useSidebar();
+const UserInfo = async () => {
+	type User = ReturnType<typeof currentUser> extends Promise<infer U>
+		? U
+		: never;
+
+	const user: User | null = await currentUser();
+
+	const plainUser = {
+		id: user && user.id,
+		firstName: user?.firstName,
+	};
 
 	return (
 		<div className='flex flex-col justify-items-center items-center bg-orange-gradient-right rounded-md p-1 max-w-sm'>
@@ -15,12 +22,17 @@ const UserInfo = () => {
 				<h3
 					className={`${oxanium.className} text-4xl text-stone-300 text-center font-semibold mb-2`}
 				>
-					Hey {!user?.id ? <span>Dude!</span> : <span>{user.firstName}</span>}
+					Hey{' '}
+					{!plainUser.id ? (
+						<span>Dude!</span>
+					) : (
+						<span>{plainUser.firstName}</span>
+					)}
 				</h3>
 				<p
 					className={`${oxanium.className} text-base text-stone-300 font-semibold text-center mt-2`}
 				>
-					{!user?.id ? (
+					{!plainUser.id ? (
 						<span>You have to sign in or sign up</span>
 					) : (
 						<>

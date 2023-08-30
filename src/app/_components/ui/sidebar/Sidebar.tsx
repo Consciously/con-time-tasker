@@ -5,18 +5,20 @@ import MenuContainer from './MenuContainer';
 import SignOutContainer from './SignOutContainer';
 import { useSidebar } from '@/app/_context/SidebarContext';
 
-const Sidebar = () => {
+interface IProps {
+	user: { id: string | null };
+}
+
+const Sidebar = ({ user }: IProps) => {
 	const { isOpen } = useSidebar();
 
 	return (
 		<div
-			className={`w-[5vw] ${
-				isOpen ? 'w-[20vw]' : ''
-			} bg-stone-700 transition duration-300`}
+			className={`${isOpen ? 'w-[20vw]' : 'w-[5vw]'} transition duration-300`}
 		>
 			<MenuContainer />
-			<SignOutContainer />
-			<Navigation />
+			<SignOutContainer user={user} />
+			<Navigation user={user} />
 		</div>
 	);
 };

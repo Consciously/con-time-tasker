@@ -1,13 +1,13 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import { LuClipboardList, LuFlag, LuClipboardCheck } from 'react-icons/lu';
 import { useSidebar } from '@/app/_context/SidebarContext';
 
-const Navigation = () => {
-	const { user } = useSidebar();
+interface IProps {
+	user: { id: string | null };
+}
 
+const Navigation = ({ user }: IProps) => {
 	return (
 		<div>
 			{user && user.id && (

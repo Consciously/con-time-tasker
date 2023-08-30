@@ -1,13 +1,12 @@
-'use client';
-
 import React from 'react';
 import { SignOutButton } from '@clerk/nextjs';
 import { FaSignOutAlt } from 'react-icons/fa';
-import { useSidebar } from '@/app/_context/SidebarContext';
 
-const SignOutBtn = () => {
-	const { user } = useSidebar();
+interface IProps {
+	user: { id: string | null };
+}
 
+const SignOutBtn = ({ user }: IProps) => {
 	return (
 		<div className='w-14 h-14 mx-auto text-center'>
 			{user && user.id && (

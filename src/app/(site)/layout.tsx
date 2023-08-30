@@ -3,7 +3,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import { nunito, oxanium } from './fonts';
 import Header from '../_components/ui/header/Header';
-import Sidebar from '../_components/ui/sidebar/Sidebar';
+import SidebarContainer from '../_components/ui/sidebar/SidebarContainer';
 import { SidebarProvider } from '../_context/SidebarContext';
 import { fetchUserData } from '../_util/getCurrentUser';
 
@@ -47,7 +47,7 @@ export default function RootLayout({
 				<SidebarProvider>
 					<body className={nunito.className}>
 						<div className='flex h-screen w-screen'>
-							<Sidebar />
+							<SidebarContainer />
 							<div className='w-[95vw]'>
 								<Header />
 								<main>{children}</main>

@@ -20,7 +20,7 @@ const Redirection = ({ user }: IProps) => {
 		}
 	}, [pathname, user]);
 
-	return <div>Hello World</div>;
+	return null;
 };
 
 export default Redirection;

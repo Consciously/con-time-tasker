@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react';
 import { usePathname, redirect } from 'next/navigation';
-import type { User } from '@clerk/nextjs/api';
 
 interface IProps {
 	user: { id: string | null };

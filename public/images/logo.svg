@@ -1,0 +1,4 @@
+<!-- Save this as logo.svg in your public directory -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100">
+  <text y="50" font-size="35" text-anchor="middle" x="100" fill="#D6D3D1">Time Tasker</text>
+</svg>

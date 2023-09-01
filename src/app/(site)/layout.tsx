@@ -42,9 +42,9 @@ export default function RootLayout({
 
 	return (
 		<html lang='en'>
-			<ClerkProvider appearance={appearanceObj}>
-				<SidebarProvider>
-					<body className={nunito.className}>
+			<body className={nunito.className}>
+				<ClerkProvider appearance={appearanceObj}>
+					<SidebarProvider>
 						<div className='flex h-screen w-screen'>
 							<SidebarContainer />
 							<div className='w-[95vw]'>
@@ -52,9 +52,9 @@ export default function RootLayout({
 								<main>{children}</main>
 							</div>
 						</div>
-					</body>
-				</SidebarProvider>
-			</ClerkProvider>
+					</SidebarProvider>
+				</ClerkProvider>
+			</body>
 		</html>
 	);
 }
